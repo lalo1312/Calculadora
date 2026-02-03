@@ -28,18 +28,91 @@
         /// </summary>
         private void InitializeComponent()
         {
+            mnsMenu = new MenuStrip();
+            archivoToolStripMenuItem = new ToolStripMenuItem();
+            salirToolStripMenuItem = new ToolStripMenuItem();
+            aplicacionesToolStripMenuItem = new ToolStripMenuItem();
+            calculadoraSimpleToolStripMenuItem = new ToolStripMenuItem();
+            ordenamientosToolStripMenuItem = new ToolStripMenuItem();
+            burbujaToolStripMenuItem = new ToolStripMenuItem();
+            mnsMenu.SuspendLayout();
             SuspendLayout();
             // 
-            // Form1
+            // mnsMenu
+            // 
+            mnsMenu.ImageScalingSize = new Size(20, 20);
+            mnsMenu.Items.AddRange(new ToolStripItem[] { archivoToolStripMenuItem, aplicacionesToolStripMenuItem });
+            mnsMenu.Location = new Point(0, 0);
+            mnsMenu.Name = "mnsMenu";
+            mnsMenu.Size = new Size(800, 28);
+            mnsMenu.TabIndex = 0;
+            mnsMenu.Text = "menuStrip1";
+            // 
+            // archivoToolStripMenuItem
+            // 
+            archivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { salirToolStripMenuItem });
+            archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            archivoToolStripMenuItem.Size = new Size(73, 24);
+            archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // salirToolStripMenuItem
+            // 
+            salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            salirToolStripMenuItem.Size = new Size(121, 26);
+            salirToolStripMenuItem.Text = "Salir";
+            salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
+            // 
+            // aplicacionesToolStripMenuItem
+            // 
+            aplicacionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { calculadoraSimpleToolStripMenuItem, ordenamientosToolStripMenuItem });
+            aplicacionesToolStripMenuItem.Name = "aplicacionesToolStripMenuItem";
+            aplicacionesToolStripMenuItem.Size = new Size(107, 24);
+            aplicacionesToolStripMenuItem.Text = "Aplicaciones";
+            // 
+            // calculadoraSimpleToolStripMenuItem
+            // 
+            calculadoraSimpleToolStripMenuItem.Name = "calculadoraSimpleToolStripMenuItem";
+            calculadoraSimpleToolStripMenuItem.Size = new Size(224, 26);
+            calculadoraSimpleToolStripMenuItem.Text = "Calculadora Simple";
+            calculadoraSimpleToolStripMenuItem.Click += calculadoraSimpleToolStripMenuItem_Click;
+            // 
+            // ordenamientosToolStripMenuItem
+            // 
+            ordenamientosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { burbujaToolStripMenuItem });
+            ordenamientosToolStripMenuItem.Name = "ordenamientosToolStripMenuItem";
+            ordenamientosToolStripMenuItem.Size = new Size(224, 26);
+            ordenamientosToolStripMenuItem.Text = "Ordenamientos";
+            // 
+            // burbujaToolStripMenuItem
+            // 
+            burbujaToolStripMenuItem.Name = "burbujaToolStripMenuItem";
+            burbujaToolStripMenuItem.Size = new Size(224, 26);
+            burbujaToolStripMenuItem.Text = "Burbuja";
+            burbujaToolStripMenuItem.Click += burbujaToolStripMenuItem_Click;
+            // 
+            // frmMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Name = "Form1";
+            Controls.Add(mnsMenu);
+            MainMenuStrip = mnsMenu;
+            Name = "frmMenu";
             Text = "Menu";
+            mnsMenu.ResumeLayout(false);
+            mnsMenu.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private MenuStrip mnsMenu;
+        private ToolStripMenuItem archivoToolStripMenuItem;
+        private ToolStripMenuItem salirToolStripMenuItem;
+        private ToolStripMenuItem aplicacionesToolStripMenuItem;
+        private ToolStripMenuItem calculadoraSimpleToolStripMenuItem;
+        private ToolStripMenuItem ordenamientosToolStripMenuItem;
+        private ToolStripMenuItem burbujaToolStripMenuItem;
     }
 }
