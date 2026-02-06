@@ -9,26 +9,25 @@ namespace Calculadora.Clases
         int[] arreglo;
         public int[] Burbuja(int[]arreglo)
         {
-            try 
-            { 
-                this.arreglo = arreglo;
-                int aux;
-
-                for (int i = 0; i < arreglo.Length - 1; i++) 
+            try
+            {
+                int n = arreglo.Length;
+                for (int i = 0; i < n - 1; i++)
                 {
-                    for (int j = 0; j < arreglo.Length - 1; j++) 
+                    for (int j = 0; j < n - i - 1; j++)
                     {
                         if (arreglo[j] > arreglo[j + 1])
                         {
-                            aux = arreglo[j];
+                            // Intercambiar arreglo[j] y arreglo[j+1]
+                            int temp = arreglo[j];
                             arreglo[j] = arreglo[j + 1];
-                            arreglo[j + 1] = aux;
+                            arreglo[j + 1] = temp;
                         }
                     }
                 }
                 return arreglo;
             }
-            catch(Exception Ex) 
+            catch (Exception Ex) 
             {
                 throw;
                 return null;
