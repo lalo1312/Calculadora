@@ -11,7 +11,7 @@ namespace Calculadora.Formularios
 {
     public partial class frmRegistro : Form
     {
-        List<Persona> Persona = new List<Persona>();
+        List<Persona> persona = new List<Persona>();
         public frmRegistro()
         {
             InitializeComponent();
@@ -23,8 +23,10 @@ namespace Calculadora.Formularios
         {
             if (tabRegistrar.SelectedIndex == 1)
             {
+
                 dgvPersonas.DataSource = null;
-                dgvPersonas.DataSource = Persona;
+                dgvPersonas.DataSource = persona;
+                verificarRegistros();
             }
         }
 
@@ -35,7 +37,7 @@ namespace Calculadora.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Persona.Add(new Persona()
+            persona.Add(new Persona()
             {
                 Nombre = txtNombre.Text,
                 Apellido = txtApellido.Text,
@@ -43,6 +45,24 @@ namespace Calculadora.Formularios
             }
            );
             MessageBox.Show("Registro agregado con exito");
+        }
+
+        private void verificarRegistros()
+        {
+            if (persona.Count == 0)
+            {
+                btnEeliminar.Enabled = false;
+            }
+            else
+                btnEeliminar.Enabled = true;
+        }
+
+        private void btnEeliminar_Click(object sender, EventArgs e)
+        {
+            persona.RemoveAt(dgvPersonas.CurrentRow.Index);
+            dgvPersonas.DataSource = null;//limpiar el datagrid
+            dgvPersonas.DataSource= persona;//Vuelve a llenar el datagrid
+            verificarRegistros();//Verificar si habilito el boton
         }
     }
 }
