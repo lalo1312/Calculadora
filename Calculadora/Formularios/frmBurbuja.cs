@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calculadora.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,13 +18,26 @@ namespace Calculadora
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
+            Ordenamientos ordenamiento = new Ordenamientos();
             int [] ordenado= new int[dgvDesordenado.RowCount-1];
             //cargar el array con el dataGrid
 
-            for (int i = 0; i < dgvDesordenado.RowCount; i++)
+            for (int i = 0; i < dgvDesordenado.RowCount-1; i++)
             {
                 ordenado[i] = Convert.ToInt32(dgvDesordenado.Rows[i].Cells[0].Value);
             }
+
+            ordenado= ordenamiento.Burbuja(ordenado);
+
+            //Define el tamaño de las filas del DatagridView de el tamaño del arreglo
+            dgvOrdenado.DataSource= ordenado;
+
+            //llena el DataGridView con los valores Ordenados
+            for (int i = 0; i < ordenado.Length; i++) 
+            {
+                dgvOrdenado.Rows[i].Cells[0].Value = ordenado[i];
+            }
+
          }
      }
 }
