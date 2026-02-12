@@ -11,8 +11,10 @@ namespace Calculadora.Formularios
 {
     public partial class frmEditor : Form
     {
-        Boolean saved=false;
+        Boolean saved = false;
         string path = "";
+        
+        string texto="";
         public frmEditor()
         {
             InitializeComponent();
@@ -20,16 +22,16 @@ namespace Calculadora.Formularios
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ofpEditor.ShowDialog() == DialogResult.OK) 
+            if (ofpEditor.ShowDialog() == DialogResult.OK)
             {
-                if (File.Exists(ofpEditor.FileName)) 
+                if (File.Exists(ofpEditor.FileName))
                 {
-                   rtbEditor.Text= File.ReadAllText(ofpEditor.FileName);
+                    rtbEditor.Text = File.ReadAllText(ofpEditor.FileName);
                 }
             }
         }
@@ -41,12 +43,12 @@ namespace Calculadora.Formularios
                 Guardar();
                 saved = true;
             }
-            else 
+            else
             {
-                using (StreamWriter archivo = new StreamWriter(path)) 
+                using (StreamWriter archivo = new StreamWriter(path))
                 {
                     archivo.Write(rtbEditor.Text);
-                }  
+                }
             }
         }
 
@@ -55,11 +57,11 @@ namespace Calculadora.Formularios
             Guardar();
         }
 
-        private void Guardar() 
+        private void Guardar()
         {
             if (sfdEditor.ShowDialog() == DialogResult.OK)
             {
-                path=sfdEditor.FileName;
+                path = sfdEditor.FileName;
                 using (StreamWriter archivo = new StreamWriter(path))
                 {
                     archivo.Write(rtbEditor.Text);
@@ -71,7 +73,28 @@ namespace Calculadora.Formularios
         {
             rtbEditor.Clear();
             path = "";
-            saved=false;
+            saved = false;
+        }
+
+        private void rtbEditor_TextChanged(object sender, EventArgs e)
+        {
+            texto = rtbEditor.Text;
+            string[] palabras = texto.Split(new char[] { ' ', '\n', '\r'}, StringSplitOptions.RemoveEmptyEntries);
+            
+            tssStatus.Text = palabras.Length.ToString() + " Palabras";
+
+        }
+
+        private void tssStatus_Click(object sender, EventArgs e)
+        {
+            string[] parrafos = texto.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] palabras = texto.Split(new char[] { ' ', '\n', '\r',}, StringSplitOptions.RemoveEmptyEntries);
+
+            MessageBox.Show("Estadisticas:\n\nPalabras: "
+                + palabras.Length.ToString()
+                + "\nLetras: " + texto.Length.ToString()
+                + "\nParrafos: "
+                + parrafos.Length.ToString(), "Contador de Palabras");
         }
     }
 }
